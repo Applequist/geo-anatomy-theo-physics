@@ -22,6 +22,12 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      - name: Update cargo
+        run: (test -x $HOME/.cargo/bin/cargo-install-update || cargo install cargo-update)
+      - name: Install mdbook
+        run: (test -x $HOME/.cargo/bin/mdbook || cargo install --vers "^0.3" mdbook)
+      - name: Update
+        run: cargo install-update -a
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - uses: actions/checkout@v2
 
